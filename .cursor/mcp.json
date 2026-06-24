@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "pdf-rag": {
+      "command": "C:\\Projects\\Retrieval\\.venv\\Scripts\\python.exe",
+      "args": ["C:\\Projects\\Retrieval\\mcp_server.py"],
+      "cwd": "C:\\Projects\\Retrieval"
+    }
+  }
+}

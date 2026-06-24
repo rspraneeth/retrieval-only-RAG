@@ -1,0 +1,8 @@
+# LlamaIndex core + PDF reader + local HuggingFace embeddings
+llama-index-core==0.13.6
+llama-index-readers-file==0.5.3
+llama-index-embeddings-huggingface==0.6.0
+pypdf==5.9.0
+pyyaml==6.0.2
+mcp==1.12.4
+sentence-transformers==3.4.1

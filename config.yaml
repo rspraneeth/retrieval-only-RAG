@@ -1,0 +1,4 @@
+pdf_folder: pdfs
+vector_store: vector_store
+embedding_model: BAAI/bge-small-en-v1.5
+top_k: 5

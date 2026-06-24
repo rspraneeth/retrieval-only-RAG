@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+venv/
+.venv/
+.env
+
+# Local vector store and runtime data
+vector_store/
+data/
+
+# HuggingFace / model cache (optional local downloads)
+.cache/
