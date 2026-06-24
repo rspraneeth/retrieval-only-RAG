@@ -16,7 +16,10 @@ def _cmd_index(config_path: Path | None) -> int:
     except ValueError as e:
         print(f"index: {e}")
         return 1
-    print(f"Indexed {file_count} PDF(s), {chunk_count} chunk(s).")
+    if chunk_count == 0:
+        print(f"All {file_count} PDF(s) up to date — nothing to index.")
+    else:
+        print(f"Indexed {file_count} PDF(s) — {chunk_count} new chunk(s).")
     print(f"Vector store: {config.vector_store}")
     return 0
 
