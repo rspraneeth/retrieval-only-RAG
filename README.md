@@ -52,7 +52,25 @@ Exposes one tool — `search_pdfs(query)` — that any MCP-compatible IDE agent 
 python mcp_server.py
 ```
 
-### Cursor config (`.cursor/mcp.json`)
+### Claude Code (`.mcp.json` in project root)
+
+A `.mcp.json` is already included in this repo:
+
+```json
+{
+  "mcpServers": {
+    "pdf-rag": {
+      "command": "C:\\Projects\\Retrieval\\.venv\\Scripts\\python.exe",
+      "args": ["C:\\Projects\\Retrieval\\mcp_server.py"],
+      "cwd": "C:\\Projects\\Retrieval"
+    }
+  }
+}
+```
+
+Update the paths to match your machine, then Claude Code picks it up automatically.
+
+### Cursor (`.cursor/mcp.json`)
 
 ```json
 {
@@ -92,6 +110,7 @@ pdf_rag/
 mcp_server.py    # MCP wrapper exposing search_pdfs()
 config.yaml
 requirements.txt
+.mcp.json        # Claude Code MCP config (update paths for your machine)
 pdfs/            # drop your PDFs here (not committed)
 vector_store/    # persisted index (not committed)
 ```
