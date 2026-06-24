@@ -34,6 +34,8 @@ pip install -r requirements.txt
 python -m pdf_rag.cli index
 ```
 
+Only new or changed PDFs are processed on subsequent runs — unchanged files are skipped. Deleted PDFs have their chunks removed automatically.
+
 **Search** — retrieve the top-k chunks for a question:
 
 ```bash
@@ -92,7 +94,7 @@ Once connected, ask your IDE agent a question about your PDFs — it calls `sear
 
 ```yaml
 pdf_folder: pdfs              # folder to scan for PDFs
-vector_store: vector_store    # where the index is persisted
+vector_store: vector_store    # where ChromaDB persists the index
 embedding_model: BAAI/bge-small-en-v1.5   # local HuggingFace model
 top_k: 5                      # chunks returned per query
 ```
@@ -104,7 +106,7 @@ top_k: 5                      # chunks returned per query
 ```
 pdf_rag/
   config.py      # load + validate config.yaml
-  indexer.py     # PDF loading, chunking, embedding, persistence
+  indexer.py     # PDF loading, chunking, embedding, ChromaDB persistence
   retriever.py   # similarity search + result formatting
   cli.py         # index / search commands
 mcp_server.py    # MCP wrapper exposing search_pdfs()
@@ -112,7 +114,7 @@ config.yaml
 requirements.txt
 .mcp.json        # Claude Code MCP config (update paths for your machine)
 pdfs/            # drop your PDFs here (not committed)
-vector_store/    # persisted index (not committed)
+vector_store/    # ChromaDB index + manifest.json (not committed)
 ```
 
 ---
@@ -121,7 +123,7 @@ vector_store/    # persisted index (not committed)
 
 | Layer | Who does it | How |
 |---|---|---|
-| Retrieval | This tool | LlamaIndex + local embeddings |
+| Retrieval | This tool | LlamaIndex + ChromaDB + local embeddings |
 | Augmentation | MCP protocol | Retrieved chunks injected into agent context |
 | Generation | IDE agent | Cursor / Kiro / Claude Code answers from chunks |
 
